@@ -154,3 +154,15 @@ alias chewmem="kgp -l che.original_name=workspace -o json | jq -r 'if .items[].s
 # Containers names of Eclipse Che workspaces 
 alias chewsnames="kgp -l che.original_name=workspace -o json | jq -r '.items[].spec.containers[].name'"
 
+# Provision an AWS OpenShift developers cluster and deploy nightly Eclipse Che
+alias cheupocp=~/Dropbox/playground/che-cluster-up/ocp-dev-cluster/provision.sh
+
+# Destroy an the OpenShift developer cluster 
+alias chedownocp=~/Dropbox/playground/che-cluster-up/ocp-dev-cluster/destroy.sh
+
+# Provision a local minikube cluster and install nightly Eclipse Che
+alias  cheupminikube=~/Dropbox/playground/che-cluster-up/minikube/provision.sh
+
+# Destroy local Eclipse Che minikube cluster
+alias chedownminikube=~/Dropbox/playground/che-cluster-up/minikube/destroy.sh
+
