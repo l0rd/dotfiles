@@ -166,3 +166,7 @@ alias  cheupminikube=~/Dropbox/playground/che-cluster-up/minikube/provision.sh
 # Destroy local Eclipse Che minikube cluster
 alias chedownminikube=~/Dropbox/playground/che-cluster-up/minikube/destroy.sh
 
+# When Che is deployed on a cluster where there are zero it creates one (che) and sets a random password.
+# This command retrieves and decode the random password of the Che user created at deployment.
+alias cheuserpassword="kgsec openshift-oauth-user-credentials -o json | jq -r .data.password | base64 -D"
+
