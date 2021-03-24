@@ -8,7 +8,7 @@ alias .....="cd ../../../.."
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias g="git"
@@ -140,7 +140,8 @@ alias reload="exec ${SHELL} -l"
 alias path='echo -e ${PATH//:/\\n}'
 
 # Che yesterday issues (opened yesterday)
-alias cheyi="open \"https://github.com/eclipse/che/issues?q=is%3Aissue+created%3A$(date -v '-1d' '+%Y-%m-%d')\""
+#alias cheyi="open \"https://github.com/eclipse/che/issues?q=is%3Aissue+created%3A$(date -v '-1d' '+%Y-%m-%d')\""
+alias cheyi="/Users/mloriedo/GitHub/cli/bin/gh issue list --search \"created:$(date -v '-1d' '+%Y-%m-%d-%s')\" --repo eclipse/che"
 
 # Start minikube
 alias mk="minikube start --memory=80192"
