@@ -141,14 +141,22 @@ alias reload="exec ${SHELL} -l"
 alias path='echo -e ${PATH//:/\\n}'
 
 # Che yesterday issues (opened yesterday)
-#alias cheyi="open \"https://github.com/eclipse/che/issues?q=is%3Aissue+created%3A$(date -v '-1d' '+%Y-%m-%d')\""
 alias cheyi='gh issue list --search "created:$(date -v ''-1d'' ''+%Y-%m-%d'')" --repo eclipse/che'
+
+# CRW yesterday issues (opened yesterday)
+alias crwyi='curl -sSL -u ${RH_JIRA_USER}:${RH_JIRA_PWD} -H "Content-Type: application/json" --get --data-urlencode "jql=project = CRW AND created > startOfDay(\"-1\") AND created < endOfDay(\"-1\") ORDER BY created DESC" https://issues.redhat.com/rest/api/latest/search | jq .issues\[\].fields.summary'
 
 # Che today issues (opened today)
 alias cheti='gh issue list --search "created:$(date ''+%Y-%m-%d'')" --repo eclipse/che'
 
+# CRW today issues (opened today)
+alias crwti='curl -sSL -u ${RH_JIRA_USER}:${RH_JIRA_PWD} -H "Content-Type: application/json" --get --data-urlencode "jql=project = CRW AND created > startOfDay()" https://issues.redhat.com/rest/api/latest/search | jq .issues\[\].fields.summary'
+
 # Che last week issues (opened in the last 7 days)
 alias chelwi='gh issue list --search "created:$(date -v ''-7d'' ''+%Y-%m-%d'')..$(date ''+%Y-%m-%d'')" --repo eclipse/che'
+
+# CRW last week issues (opened in the last 7 days)
+alias crwlwi='curl -sSL -u ${RH_JIRA_USER}:${RH_JIRA_PWD} -H "Content-Type: application/json" --get --data-urlencode "jql=project = CRW AND created > startOfDay(\"-7\") AND created < endOfDay(\"-1\") ORDER BY created DESC" https://issues.redhat.com/rest/api/latest/search | jq .issues\[\].fields.summary'
 
 # Start minikube
 alias mk='minikube start --memory=80192'
