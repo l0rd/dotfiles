@@ -47,7 +47,7 @@ alias sudo='sudo '
 alias week='date +%V'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade --greedy; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 # Google Chrome
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
@@ -142,16 +142,16 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Che yesterday issues (opened yesterday)
 #alias cheyi="open \"https://github.com/eclipse/che/issues?q=is%3Aissue+created%3A$(date -v '-1d' '+%Y-%m-%d')\""
-alias cheyi="gh issue list --search \"created:$(date -v '-1d' '+%Y-%m-%d')\" --repo eclipse/che"
+alias cheyi='gh issue list --search "created:$(date -v ''-1d'' ''+%Y-%m-%d'')" --repo eclipse/che'
 
 # Che today issues (opened today)
-alias cheti="gh issue list --search \"created:$(date '+%Y-%m-%d')\" --repo eclipse/che"
+alias cheti='gh issue list --search "created:$(date ''+%Y-%m-%d'')" --repo eclipse/che'
 
 # Che last week issues (opened in the last 7 days)
-alias chelwi="gh issue list --search \"created:$(date -v '-7d' '+%Y-%m-%d')..$(date '+%Y-%m-%d')\" --repo eclipse/che"
+alias chelwi='gh issue list --search "created:$(date -v ''-7d'' ''+%Y-%m-%d'')..$(date ''+%Y-%m-%d'')" --repo eclipse/che'
 
 # Start minikube
-alias mk="minikube start --memory=80192"
+alias mk='minikube start --memory=80192'
 
 # List ec2 instances 
 alias ec2_list='aws ec2 describe-instances --query '\''Reservations[].Instances[].[InstanceId, Tags[?Key==`Name`].Value[] | [0]]'\'' --output text'
@@ -177,4 +177,8 @@ alias chedownminikube=~/Dropbox/playground/che-cluster-up/minikube/destroy.sh
 # When Che is deployed on a cluster where there are zero it creates one (che) and sets a random password.
 # This command retrieves and decode the random password of the Che user created at deployment.
 alias cheuserpassword="kgsec openshift-oauth-user-credentials -o json | jq -r .data.password | base64 -D"
+
+# Control airpods
+alias airpodsup='blueutil --connect ${AIRPODS_ID}'
+alias airpodsdown='blueutil --disconnect ${AIRPODS_ID}'
 
