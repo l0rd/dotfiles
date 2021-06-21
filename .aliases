@@ -159,7 +159,7 @@ alias chelwi='gh issue list --search "created:$(date -v ''-7d'' ''+%Y-%m-%d'')..
 alias crwlwi='curl -sSL -u ${RH_JIRA_USER}:${RH_JIRA_PWD} -H "Content-Type: application/json" --get --data-urlencode "jql=project = CRW AND created > startOfDay(\"-7\") AND created < endOfDay(\"-1\") ORDER BY created DESC" https://issues.redhat.com/rest/api/latest/search | jq .issues\[\].fields.summary'
 
 # Start minikube
-alias mk='minikube start --memory=8192'
+alias mk='minikube start --memory=8192 --vm=true --cpus=4 --addons=ingress'
 
 # List ec2 instances 
 alias ec2_list='aws ec2 describe-instances --query '\''Reservations[].Instances[].[InstanceId, Tags[?Key==`Name`].Value[] | [0]]'\'' --output text'
@@ -184,7 +184,7 @@ alias chedownminikube=~/Dropbox/playground/che-cluster-up/minikube/destroy.sh
 
 # When Che is deployed on a cluster where there are zero it creates one (che) and sets a random password.
 # This command retrieves and decode the random password of the Che user created at deployment.
-alias cheuserpassword="kgsec openshift-oauth-user-credentials -o json | jq -r .data.password | base64 -D"
+alias cheuserpassword='kgsec -n openshift-config openshift-oauth-user-credentials -o json | jq -r .data.password | base64 -D'
 
 # Control airpods
 alias airpodsup='blueutil --connect ${AIRPODS_ID}'
