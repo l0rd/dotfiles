@@ -190,3 +190,6 @@ alias cheuserpassword='kgsec -n openshift-config openshift-oauth-user-credential
 alias airpodsup='blueutil --connect ${AIRPODS_ID}'
 alias airpodsdown='blueutil --disconnect ${AIRPODS_ID}'
 
+# https://github.com/ahmetb/kubectl-aliases
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+
